@@ -1,0 +1,12 @@
+# thinssh
+# usage: thinssh user.name@hostname
+#
+# runs ssh inside a docker container
+# links your home .ssh directory into the container
+# so you don't need to move your private keys
+
+SSH_ARGS="$@"
+IMAGE_NAME=thin_ssh
+
+# set -x # output shell commands for debugging
+docker run -it --rm --volume=$HOME/.ssh:/root/.ssh $IMAGE_NAME "ssh $SSH_ARGS"
